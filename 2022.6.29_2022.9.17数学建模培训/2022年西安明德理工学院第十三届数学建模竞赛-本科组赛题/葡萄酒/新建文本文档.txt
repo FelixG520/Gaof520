@@ -1,0 +1,31 @@
+figure(1);
+hold on;
+plot(x1,'bo');
+plot(x4,'ro');
+plot(x6,'mo');
+plot(x7,'co');
+plot(x11,'go');
+plot(y,'mo','LineWidth',1);
+legend('非挥发性酸含量','残余糖分含量','游离二氧化硫含量','总二氧化硫含量','酒精浓度','质量')
+
+figure(2);
+hold on;
+plot(x2,'bo');
+plot(x3,'ro');
+plot(x5,'co');
+plot(x8,'mo');
+plot(x9,'go');
+plot(x10,'yo');
+plot(y,'mo','LineWidth',1);
+legend('挥发性酸含量','柠檬酸含量','残余糖分含量','密度','酸碱度','硫酸钾含量','质量')
+
+
+y=[y'];
+x=[ones(size(x1')),x1',x2',x3',x4',x5',x6',x7',x8',x9',x10',x11'];
+[b,bint,r,rint,stats]=regress(y,x)
+
+
+
+y_m = b(1) + b(2) .* X1 + b(3) .* X2 + b(4) .* X3 + b(5) .* X4+ ...
+    b(6) .* X5+ b(7) .* X6+ b(8) .* X7+ b(9) .* X8+ b(10) .* X9+ ...
+    b(11) .* X10+ b(12) .* X11;
